@@ -1,13 +1,29 @@
-body {
+@font-face {
+  font-family: Open Sans;
+  src: local("Open Sans Regular"), local("OpenSans-Regular"), url("https://www.rentalcars.com/web/static/ui-fonts/open-sans/open-sans-v15-latin-400.woff2") format("woff2"), url("https://www.rentalcars.com/web/static/ui-fonts/open-sans/open-sans-v15-latin-400.woff") format("woff"), url("https://www.rentalcars.com/web/static/ui-fonts/open-sans/open-sans-v15-latin-400.woff2") format("woff2"), url("https://www.rentalcars.com/web/static/ui-fonts/open-sans/open-sans-v15-latin-400.woff") format("woff");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: Ubuntu;
+  src: local("Ubuntu Bold"), local("Ubuntu-Bold"), url("https://www.rentalcars.com/web/static/ui-fonts/ubuntu/ubuntu-v13-latin-500.woff2") format("woff2"), url("https://www.rentalcars.com/web/static/ui-fonts/ubuntu/ubuntu-v13-latin-500.woff") format("woff"), url("https://www.rentalcars.com/web/static/ui-fonts/ubuntu/ubuntu-v13-latin-500.woff2") format("woff2"), url("https://www.rentalcars.com/web/static/ui-fonts/ubuntu/ubuntu-v13-latin-500.woff") format("woff");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+html {
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  margin: 0;
 }
+
+.sr-description { display: none; }
