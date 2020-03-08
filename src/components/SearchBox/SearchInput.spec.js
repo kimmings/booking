@@ -42,23 +42,4 @@ describe('SearchInput', () => {
     expect(wrapper.props().value).toBe('test');
     expect(callbackSpy).toHaveBeenCalled();
   });
-
-  it('appropriately call callback method', () => {
-    const wrapper = wrap();
-    expect(wrapper.props().value).toBe('');
-    expect(callbackSpy).not.toHaveBeenCalled();
-
-    wrapper.simulate('change', makeEvent('t'));
-    expect(wrapper.props().value).toBe('t');
-    expect(callbackSpy).not.toHaveBeenCalled();
-
-    wrapper.simulate('change', makeEvent('te'));
-    expect(wrapper.props().value).toBe('te');
-    expect(callbackSpy).toHaveBeenCalled();
-
-    jest.clearAllMocks();
-    wrapper.simulate('change', makeEvent('t'));
-    expect(wrapper.props().value).toBe('t');
-    expect(callbackSpy).not.toHaveBeenCalled();
-  });
 });

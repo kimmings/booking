@@ -1,40 +1,53 @@
 import React from 'react';
 import SearchInput from './SearchInput';
+import makeRequest from '../../api';
 import { Widget, Header, Label } from './styles';
-
-const maxResults = 6;
-const endpoint = `https://www.rentalcars.com/FTSAutocomplete.do?solrIndex=fts_en&solrRows=${maxResults}&solrTerm=`;
-
-// TODO: debounce?
-const doApiCall = async value => {
-  console.log('DO API CALL', value);
-  const results = await fetch(`${endpoint}${value}`);
-  console.log(results);
-};
 
 const id = 'location-search';
 
-const SearchBox = () => (
-  <Widget>
-    <Header>Let’s find your ideal car</Header>
-    <div>
-      <Label htmlFor="search-pickup">Pick-up Location</Label>
-      <SearchInput
-        callback={doApiCall}
-        placeholder="city, airport, station, region, district…"
-        id={id}
-      />
-      <span
-        className="rc-search-results"
-        id={`${id}-results`}
-        aria-live="polite"
-        aria-expanded="false"
-      ></span>
-      <span className="sr-description" id={`${id}-description`}>
-        Screen Reader description goes here.
-      </span>
-    </div>
-  </Widget>
-);
+const SearchBox = () => {
+  const [results, setResults] = React.useState([]);
+
+  const apiCall = React.useCallback(
+    async value => {
+      if (value.length < 2) return setResults([]);
+
+      const locations = await makeRequest(value);
+      setResults(locations);
+    },
+    [setResults]
+  );
+
+  console.log({ results });
+  return (
+    <Widget>
+      <Header>Let’s find your ideal car</Header>
+      <div>
+        <Label htmlFor="search-pickup">Pick-up Location</Label>
+        <SearchInput
+          callback={apiCall}
+          placeholder="city, airport, station, region, district…"
+          id={id}
+          aria-describedby={`${id}-description`}
+          aria-controls={`${id}-results`}
+          aria-autocomplete="list"
+          aria-required="true"
+        />
+        <span
+          className="rc-search-results"
+          id={`${id}-results`}
+          aria-expanded={results.length ? true : false}
+        >
+          {results.map(r => {
+            return <div key={r.bookingId | r.index}>{r.name}</div>;
+          })}
+        </span>
+        <span className="sr-description" id={`${id}-description`}>
+          Screen Reader description goes here.
+        </span>
+      </div>
+    </Widget>
+  );
+};
 
 export default SearchBox;

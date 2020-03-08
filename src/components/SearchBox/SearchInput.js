@@ -10,7 +10,7 @@ const InputComponent = ({ id, callback, defaultValue, ...rest }) => {
       const value = currentTarget.value;
       // TODO: trim value
       setValue(value);
-      if (value.length > 1) callback(value);
+      callback(value);
     },
     [setValue, callback]
   );
@@ -22,10 +22,6 @@ const InputComponent = ({ id, callback, defaultValue, ...rest }) => {
       value={value}
       onChange={onChange}
       type="text"
-      aria-describedby={`${id}-description`}
-      aria-controls={`${id}-results`}
-      aria-autocomplete="list"
-      aria-required="true"
       {...rest}
     />
   );
