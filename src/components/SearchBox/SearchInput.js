@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { SearchInput } from './styles';
+import { SearchInput } from '../../constants/styles';
 
 const InputComponent = ({ id, callback, defaultValue, ...rest }) => {
   const [value, setValue] = useState(defaultValue);

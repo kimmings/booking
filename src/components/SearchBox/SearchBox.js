@@ -1,7 +1,8 @@
 import React from 'react';
 import SearchInput from './SearchInput';
+import SearchResults from './SearchResults';
 import makeRequest from '../../api';
-import { Widget, Header, Label } from './styles';
+import { Widget, Header, Label } from '../../constants/styles';
 
 const id = 'location-search';
 
@@ -18,7 +19,6 @@ const SearchBox = () => {
     [setResults]
   );
 
-  console.log({ results });
   return (
     <Widget>
       <Header>Let’s find your ideal car</Header>
@@ -33,15 +33,8 @@ const SearchBox = () => {
           aria-autocomplete="list"
           aria-required="true"
         />
-        <span
-          className="rc-search-results"
-          id={`${id}-results`}
-          aria-expanded={results.length ? true : false}
-        >
-          {results.map(r => {
-            return <div key={r.bookingId | r.index}>{r.name}</div>;
-          })}
-        </span>
+        <SearchResults results={results} id={id} />
+
         <span className="sr-description" id={`${id}-description`}>
           Screen Reader description goes here.
         </span>

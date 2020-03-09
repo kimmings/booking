@@ -1,5 +1,5 @@
-const maxResults = 6;
-const endpoint = `https://www.rentalcars.com/FTSAutocomplete.do?solrIndex=fts_en&solrRows=${maxResults}&solrTerm=`;
+import { api } from '../constants';
+const endpoint = `${api.API_BASE}${api.API_PATH}&solrRows=${api.MAX_RESULTS}&solrTerm=`;
 
 // TODO: debounce?
 const makeRequest = async value => {
